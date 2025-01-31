@@ -1,0 +1,158 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #c4cec4;
+  color: #6c7a75;
+  margin: auto;
+  padding: 10px;
+}
+
+header {
+  background-color: #a1eb6fe1;
+  color: #fff;
+  padding: 1px;
+  text-align: center;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  width: 150px;  /* Adjust size of your logo */
+  height: auto;
+}
+
+nav {
+  display: flex;
+  gap: 10px;  /* Adds space between links */
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+nav a:hover {
+  color: #007bff;  /* Adds hover effect to links */
+}
+
+.room-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.room-card {
+  background-color: #cdee80af;
+  box-shadow: 0 2px 10px rgb(17, 12, 12);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 300px;
+  margin: 10px;
+  text-align: center;
+}
+
+.room-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.room-card h2 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.room-card p {
+  font-size: 1rem;
+  color: #666;
+  padding: 0 10px 10px;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small screens (Mobile) */
+@media (max-width: 600px) {
+  body {
+    font-size: 0.9rem; /* Smaller font size for mobile */
+  }
+
+  header {
+    padding: 15px; /* Reduced padding for small screens */
+  }
+
+  .room-list {
+    justify-content: center; /* Center align the room cards */
+  }
+
+  .room-card {
+    width: 100%; /* Allow room cards to take full width */
+    margin: 10px 0; /* Adjust margin to fit cards better on mobile */
+  }
+
+  .room-card h2 {
+    font-size: 1.2rem; /* Smaller font size for heading */
+  }
+
+  .room-card p {
+    font-size: 0.9rem; /* Smaller text for descriptions */
+  }
+}
+
+/* Medium screens (Tablets) */
+@media (max-width: 768px) {
+  body {
+    font-size: 1rem; /* Adjust base font size for tablet */
+  }
+
+  header {
+    padding: 18px; /* Adjust header padding for tablets */
+  }
+
+  .room-list {
+    justify-content: space-between; /* Adjust room card layout */
+  }
+
+  .room-card {
+    width: 55%; /* Room cards take up 45% of the width */
+    margin: 10px;
+  }
+
+  .room-card h2 {
+    font-size: 1.3rem; /* Slightly smaller heading */
+  }
+
+  .room-card p {
+    font-size: 1rem; /* Adjust paragraph font size */
+  }
+}
+
+/* Large screens (Desktops) */
+@media (min-width: 1024px) {
+  body {
+    font-size: 1rem; /* Keep font size normal on large screens */
+  }
+
+  header {
+    padding: 0px; /* Keep header padding for desktop */
+  }
+
+  .room-list {
+    justify-content: space-around; /* Standard room card layout */
+  }
+
+  .room-card {
+    width: 700px; /* Keep room cards at a fixed width */
+    margin: 50px;
+  }
+
+  .room-card h2 {
+    font-size: 1.5rem; /* Heading font size for desktop */
+  }
+
+  .room-card p {
+    font-size: 1rem; /* Maintain regular text size */
+  }
+}
