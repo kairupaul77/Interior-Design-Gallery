@@ -42,7 +42,7 @@ Installation
 1. Clone the repository
 bash
 Copy
-git clone https://github.com/your-username/interior-design-gallery-frontend.git
+git clone hhttps://github.com/kairupaul77/Interior-Design-Gallery.git
 cd interior-design-gallery-frontend
 2. Install the dependencies
 bash

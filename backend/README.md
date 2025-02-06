@@ -28,7 +28,7 @@ Installation
 1. Clone the repository
 bash
 Copy
-git clone https://github.com/your-username/interior-design-gallery-backend.git
+git clone https://github.com/kairupaul77/Interior-Design-Gallery.git
 cd interior-design-gallery-backend
 2. Set up a Virtual Environment
 It's recommended to use a virtual environment for isolating dependencies:
