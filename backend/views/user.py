@@ -20,15 +20,15 @@ def fetch_users():
             'username':user.username,
             "todos":[
                 {
-                    "id": todo.id,
-                    "title": todo.title,
-                    "description": todo.description,
-                    "deadline": todo.deadline,
+                    "id": products.id,
+                    "title": products.title,
+                    "description": products.description,
+                    "deadline": products.deadline,
                     "tag":{
-                        "id": todo.tag.id,
-                        "name": todo.tag.name,
+                        "id": products.tag.id,
+                        "name": products.tag.name,
                     }
-                } for todo in user.todos
+                } for products in user.todos
             ]
         })
 
@@ -52,19 +52,9 @@ def add_users():
         db.session.add(new_user)
         db.session.commit()
         
-        # Delay the import of app and mail to avoid circular import
-        # from app import app, mail  # Import inside the function to avoid circular import
-        # try:
-        #     msg = Message(
-        #         subject="Welcome to Interior Design Gallery App",
-        #         sender=app.config["MAIL_DEFAULT_SENDER"],
-        #         recipients=[email],
-        #         body="This is a test email sent from a Flask Application"
-        #     )
-        #     mail.send(msg)
+       
         return jsonify({"msg":"User saved successfully!"}), 201
-        # except Exception as e:
-        #     return jsonify({"error": f"Failed to send email: {e}"}), 406
+        
 
 # Update
 @user_bp.route("/users/<int:user_id>", methods=["PATCH"])

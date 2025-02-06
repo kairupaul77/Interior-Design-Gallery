@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const ProductsPage = ({ addToCart }) => {
-  // Predefined list of products with unique IDs
+const Products = ({ addToCart }) => {
   const [productList, setProductList] = useState([
     {
       id: 1,
@@ -40,14 +39,14 @@ const ProductsPage = ({ addToCart }) => {
       photos: ['https://i.pinimg.com/736x/c0/ac/d7/c0acd7ba7e6ab752c4d68cbcb5468f9e.jpg']
     },
     {
-      id: 6, // Changed to make unique ID
+      id: 6,
       name: 'Product 6',
       price: 400,
       stock: 10,
       photos: ['https://i.pinimg.com/736x/86/f9/78/86f978db34bc563107a3f3c06884d016.jpg']
     },
     {
-      id: 7, // Changed to make unique ID
+      id: 7,
       name: 'Product 7',
       price: 350,
       stock: 2,
@@ -55,7 +54,6 @@ const ProductsPage = ({ addToCart }) => {
     }
   ]);
 
-  // State to manage editing and viewing a product
   const [editingProduct, setEditingProduct] = useState(null);
   const [updatedProduct, setUpdatedProduct] = useState({
     name: '',
@@ -66,13 +64,11 @@ const ProductsPage = ({ addToCart }) => {
 
   const [viewingProduct, setViewingProduct] = useState(null);
 
-  // Handle editing a product
   const handleEditProduct = (product) => {
     setEditingProduct(product.id);
     setUpdatedProduct({ ...product });
   };
 
-  // Handle updating the product
   const handleUpdateProduct = (e) => {
     e.preventDefault();
     setProductList(
@@ -84,77 +80,99 @@ const ProductsPage = ({ addToCart }) => {
     setUpdatedProduct({ name: '', price: 0, stock: 0, photos: [] });
   };
 
-  // Handle deleting a product
   const handleDeleteProduct = (id) => {
     setProductList(productList.filter((product) => product.id !== id));
   };
 
-  // Handle viewing a product
   const handleViewProduct = (product) => {
     setViewingProduct(product);
   };
 
   return (
-    <div>
-      <h1>Products</h1>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-6">Products</h1>
 
       {/* View Cart Button */}
-      <section style={{ marginBottom: '20px', textAlign: 'center' }}>
+      <section className="mb-6 text-center">
         <Link to="/sales">
-          <button style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}>
+          <button className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
             View Cart
           </button>
         </Link>
       </section>
 
       {/* Display Product List in Grid View */}
-      <div className="product-list">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {productList.map((product) => (
-          <div key={product.id} className="product-card">
+          <div key={product.id} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg">
             <img
               src={product.photos[0]}
               alt={product.name}
-              className="product-image"
+              className="w-full h-56 object-cover rounded-lg mb-4"
             />
-            <h3>{product.name}</h3>
-            <p>Price: ${product.price}</p>
-            <p>Stock: {product.stock}</p>
+            <h3 className="text-xl font-semibold">{product.name}</h3>
+            <p className="text-gray-700">Price: ${product.price}</p>
+            <p className="text-gray-700">Stock: {product.stock}</p>
 
             {/* Add to Cart Button */}
             <button
               disabled={product.stock === 0}
               onClick={() => addToCart({ ...product, quantity: 1 })}
+              className={`mt-4 w-full py-2 rounded-lg font-semibold ${product.stock > 0 ? 'bg-green-500 hover:bg-green-600 text-white' : 'bg-gray-400 cursor-not-allowed'}`}
             >
               {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
             </button>
 
             {/* View, Edit, and Delete Buttons */}
-            <div className="product-actions">
-              <button onClick={() => handleViewProduct(product)}>View</button>
-              <button onClick={() => handleEditProduct(product)}>Edit</button>
-              <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
+            <div className="mt-4 flex space-x-3 justify-center">
+              {/* View Product Button */}
+              <button
+                onClick={() => handleViewProduct(product)}
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              >
+                View
+              </button>
+              
+              {/* Edit Product Button */}
+              <button
+                onClick={() => handleEditProduct(product)}
+                className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
+              >
+                Edit
+              </button>
+              
+              {/* Delete Product Button */}
+              <button
+                onClick={() => handleDeleteProduct(product.id)}
+                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+              >
+                Delete
+              </button>
             </div>
 
             {/* Update Product Form appears below each product when editing */}
             {editingProduct === product.id && (
-              <form onSubmit={handleUpdateProduct} style={{ marginTop: '10px' }}>
+              <form onSubmit={handleUpdateProduct} className="mt-4 space-y-3">
                 <input
                   type="text"
                   value={updatedProduct.name}
                   onChange={(e) => setUpdatedProduct({ ...updatedProduct, name: e.target.value })}
                   required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                   type="number"
                   value={updatedProduct.price}
                   onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
                   required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                   type="number"
                   value={updatedProduct.stock}
                   onChange={(e) => setUpdatedProduct({ ...updatedProduct, stock: e.target.value })}
                   required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                   type="text"
@@ -162,8 +180,14 @@ const ProductsPage = ({ addToCart }) => {
                   onChange={(e) =>
                     setUpdatedProduct({ ...updatedProduct, photos: [e.target.value] })
                   }
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <button type="submit">Update Product</button>
+                <button
+                  type="submit"
+                  className="w-full py-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600"
+                >
+                  Update Product
+                </button>
               </form>
             )}
           </div>
@@ -172,20 +196,28 @@ const ProductsPage = ({ addToCart }) => {
 
       {/* View Product Modal */}
       {viewingProduct && (
-        <div className="view-product-modal">
-          <h2>{viewingProduct.name}</h2>
-          <img
-            src={viewingProduct.photos[0]}
-            alt={viewingProduct.name}
-            style={{ width: '100%', maxWidth: '300px', margin: '10px 0' }}
-          />
-          <p>Price: ${viewingProduct.price}</p>
-          <p>Stock: {viewingProduct.stock}</p>
-          <button onClick={() => setViewingProduct(null)}>Close</button>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 className="text-2xl font-semibold mb-4">{viewingProduct.name}</h2>
+            <img
+              src={viewingProduct.photos[0]}
+              alt={viewingProduct.name}
+              className="w-full h-56 object-cover rounded-lg mb-4"
+            />
+            <p className="text-gray-700">Price: ${viewingProduct.price}</p>
+            <p className="text-gray-700">Stock: {viewingProduct.stock}</p>
+            {/* Close Modal Button */}
+            <button
+              onClick={() => setViewingProduct(null)}
+              className="mt-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            >
+              Close
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
 };
 
-export default ProductsPage;
+export default Products;

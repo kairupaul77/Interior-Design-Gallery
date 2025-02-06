@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import RoomList from "../components/RoomList";
 import RoomCard from "../components/RoomCard";
+import { Link } from 'react-router-dom';
 
-const HomePage = () => {
+const Home = () => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true); // Track loading state
   const [error, setError] = useState(null);
@@ -56,4 +57,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Home;

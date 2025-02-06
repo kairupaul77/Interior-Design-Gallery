@@ -39,7 +39,7 @@ def current_user():
         user_data = {
             'id': user.id,
             'email': user.email,
-            'is_approved': user.is_approved,
+            # 'is_approved': user.is_approved,
             'is_admin': user.is_admin,
             'username': user.username
         }

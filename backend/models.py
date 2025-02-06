@@ -38,6 +38,11 @@ class User(db.Model):
     is_verified = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    is_admin = db.Column(db.Boolean, default=False)
+
+    @property
+    def is_admin(self):
+        return self.role == 'admin' 
 
 class Product(db.Model):
     __tablename__ = 'product'

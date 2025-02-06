@@ -72,7 +72,7 @@ def get_rooms():
         return jsonify({"error": str(e)}), 500
 
 # Route to add a new room
-@app.route('/rooms', methods=['POST'])
+@app.route('/room', methods=['POST'])
 def add_room():
     try:
         # Get the data from the request

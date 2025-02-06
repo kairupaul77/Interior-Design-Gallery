@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 
-const AboutPage = () => {
+const About = () => {
   return (
     <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
       <h1>About Us</h1>
@@ -52,4 +52,4 @@ We believe that every space has the potential to be transformed into something e
   );
 };
 
-export default AboutPage;
+export default About;

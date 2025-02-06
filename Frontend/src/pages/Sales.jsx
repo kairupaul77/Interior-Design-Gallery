@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 
-const SalesPage = ({ cart, removeFromCart, updateQuantity }) => {
+const Sales = ({ cart, removeFromCart, updateQuantity }) => {
   // Calculate total amount with quantity
   const totalAmount = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -58,4 +58,4 @@ const SalesPage = ({ cart, removeFromCart, updateQuantity }) => {
   );
 };
 
-export default SalesPage;
+export default Sales;
